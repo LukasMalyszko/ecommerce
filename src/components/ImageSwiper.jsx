@@ -13,7 +13,7 @@ export default function ImageSwiper({
     const [direction, setDirection] = useState(null); // "left" (next) | "right" (prev)
 
     useEffect(() => {
-        setIndex((i) => Math.min(Math.max(initialIndex, 0), Math.max(slides.length - 1, 0)));
+        setIndex(() => Math.min(Math.max(initialIndex, 0), Math.max(slides.length - 1, 0)));
     }, [initialIndex, slides.length]);
 
     const goTo = useCallback(
@@ -37,10 +37,6 @@ export default function ImageSwiper({
     const onPointerDown = (e) => {
         active.current = true;
         startX.current = "touches" in e ? e.touches[0].clientX : e.clientX;
-    };
-    const onPointerMove = (e) => {
-        if (!active.current) return;
-        const x = "touches" in e ? e.touches[0].clientX : e.clientX;
     };
     const onPointerUp = (e) => {
         if (!active.current) return;
@@ -69,11 +65,9 @@ export default function ImageSwiper({
             tabIndex={0}
             onKeyDown={onKeyDown}
             onMouseDown={onPointerDown}
-            onMouseMove={onPointerMove}
             onMouseUp={onPointerUp}
             onMouseLeave={onPointerUp}
             onTouchStart={onPointerDown}
-            onTouchMove={onPointerMove}
             onTouchEnd={onPointerUp}
         >
             <div className="image-stage">
