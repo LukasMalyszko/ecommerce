@@ -1,0 +1,92 @@
+.image-swiper {
+    position: relative;
+    width: 100%;
+    user-select: none;
+}
+
+.image-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.image-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    will-change: transform, opacity;
+}
+
+@keyframes slide-in-left {
+    from { transform: translateX(100%); opacity: 0.2; }
+    to   { transform: translateX(0%);   opacity: 1; }
+}
+@keyframes slide-out-left {
+    from { transform: translateX(0%);    opacity: 1; }
+    to   { transform: translateX(-20%);  opacity: 0; }
+}
+@keyframes slide-in-right {
+    from { transform: translateX(-100%); opacity: 0.2; }
+    to   { transform: translateX(0%);    opacity: 1; }
+}
+@keyframes slide-out-right {
+    from { transform: translateX(0%);    opacity: 1; }
+    to   { transform: translateX(20%);   opacity: 0; }
+}
+
+.slide-in-left   { animation: slide-in-left 300ms ease both; }
+.slide-out-left  { animation: slide-out-left 280ms ease both; }
+.slide-in-right  { animation: slide-in-right 300ms ease both; }
+.slide-out-right { animation: slide-out-right 280ms ease both; }
+
+@keyframes fade-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.fade-in { animation: fade-in 220ms ease-out both; }
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    line-height: 34px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+.nav-btn.left { left: 8px; }
+.nav-btn.right { right: 8px; }
+.nav-btn:hover { background: rgba(0, 0, 0, 0.55); }
+
+.dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    z-index: 2;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.25);
+    border: none;
+    cursor: pointer;
+}
+.dot.active {
+    background: rgba(0,0,0,0.6);
+}
